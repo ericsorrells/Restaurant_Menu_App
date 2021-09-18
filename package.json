@@ -1,0 +1,21 @@
+{
+  "name": "restaurant_menu_app",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "webpack-dev-server",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Eric Sorrells",
+  "license": "ISC",
+  "devDependencies": {
+    "webpack": "^5.53.0",
+    "webpack-cli": "^4.8.0",
+    "webpack-dev-server": "^4.2.1"
+  },
+  "dependencies": {
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2"
+  }
+}

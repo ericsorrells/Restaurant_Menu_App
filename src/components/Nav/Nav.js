@@ -1,14 +1,13 @@
 // ========================================================================
 /* External */
 import React from 'react';
-// import ReactDOM from 'react-dom';
 
 /* Interal */
 // ========================================================================
 
 const Nav = () => {
   return (
-    <nav>
+    <nav data-testid="nav">
       Eric's Pizza Palace
     </nav>
   )

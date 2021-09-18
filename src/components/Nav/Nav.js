@@ -1,14 +1,17 @@
 // ========================================================================
 /* External */
 import React from 'react';
-import ReactDOM from 'react-dom';
+// import ReactDOM from 'react-dom';
 
 /* Interal */
-import Nav from "./components/Nav/Nav"
-import "./styles/_styles.scss"
 // ========================================================================
 
-const jsx =
-  <div><Nav/></div>
+const Nav = () => {
+  return (
+    <nav>
+      Eric's Pizza Palace
+    </nav>
+  )
+}
 
-ReactDOM.render(jsx, document.getElementById('app'))
+export default Nav;

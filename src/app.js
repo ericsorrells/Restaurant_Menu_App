@@ -1,8 +1,10 @@
-
 // ========================================================================
 /* External */
 import React from 'react';
 import ReactDOM from 'react-dom';
+
+/* Interal */
+import "./styles/styles.scss"
 // ========================================================================
 
 const jsx = <h1>Hello World!</h1>

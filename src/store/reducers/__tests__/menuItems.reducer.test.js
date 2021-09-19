@@ -46,14 +46,12 @@ describe("Menu Items Reducer", () => {
         2: makeMenuItem({id: 2, title: "Pepperoni Pizza"}),
         3: makeMenuItem({id: 3}),
       };
-      const {2: deleted, ...remainingItems} = existingState;
-      console.log('REMAINING ITEMS', remainingItems)
 
+      const expectedState = Object.values(existingState).filter(item => item.id !== 2);
       const action = deleteMenuItem(2);
       const state = menuItemsReducer(existingState, action);
 
-      expect(state).toEqual(remainingItems);
-
+      expect(state).toEqual(expectedState);
     });
   });
 });

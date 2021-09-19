@@ -1,23 +1,18 @@
 
 // ========================================================================
 /* Interal */
-import React from "react";
-import { render } from "@testing-library/react";
+import { fireEvent } from "@testing-library/react";
 import '@testing-library/jest-dom/extend-expect';
-import {Provider} from "react-redux"
-// import * as redux from 'react-redux';
 
 /* Interal */
 import MenuItem from "./MenuItem";
+import renderComponent from "../../utils/testingUtils";
+
 // ========================================================================
 
-// jest.mock("react-redux", () => ({
-//   ...jest.requireActual("react-redux"),
-//   useSelector: jest.fn(),
-//   useDispatch: jest.fn()
-// }));
-
 describe("MenuItem Component", () => {
+  const initialState = { user: { admin: false } }
+  const dispatch = jest.fn();
   const item = {
     id: 1,
     image: "http://someImage.url",
@@ -25,33 +20,26 @@ describe("MenuItem Component", () => {
     description: "Lorem ipsum dolor sit",
     price: 14.99,
   };
-
-  const renderMenuItem = () => {
-    render(
-      <Provider store={}>
-        <MenuItem item={item}/>
-      </Provider>
-    )
-  }
+  const props = {item, dispatch}
 
   describe('Item Display', () => {
     it("should have item image", () => {
-      const { getByTestId } = render(<MenuItem item={item} />);
+      const { getByTestId } = renderComponent(MenuItem, initialState, props);
       expect(getByTestId("image")).toBeInTheDocument();
     });
 
     it("should have title", () => {
-      const { getByTestId } = render(<MenuItem item={item} />);
+      const { getByTestId } = renderComponent(MenuItem, initialState, props);
       expect(getByTestId("title")).toHaveTextContent(item.title);
     });
 
     it("should have item description", () => {
-      const { getByTestId } = render(<MenuItem item={item} />);
+      const { getByTestId } = renderComponent(MenuItem, initialState, props);
       expect(getByTestId("description")).toHaveTextContent(item.description);
     });
 
     it("should have item price", () => {
-      const { getByTestId } = render(<MenuItem item={item} />);
+      const { getByTestId } = renderComponent(MenuItem, initialState, props);
       expect(getByTestId("price")).toHaveTextContent(item.price);
     });
   });
@@ -59,22 +47,32 @@ describe("MenuItem Component", () => {
   describe('Admin', () => {
     describe('When Not Admin', () => {
       it('should not display delete button', () => {
-
+        const { queryByText } = renderComponent(MenuItem, initialState, props);
+        const deleteButton = queryByText("Delete");
+        expect(deleteButton).not.toBeInTheDocument();
       });
     });
 
     describe('When Admin', () => {
-      const spy = jest.spyOn(redux, 'useSelector');
+      const initialState = { user: { admin: true } };
 
       it('will display delete button', () => {
-        spy.mockReturnValue(true);
-        const { queryByText } = render(<MenuItem item={item} />);
+        const { queryByText } = renderComponent(MenuItem, initialState, props);
         const deleteButton = queryByText("Delete");
-        expect(deleteButton).toBeInTheDocument()
+        expect(deleteButton).toBeInTheDocument();
       });
 
-      it('will fire correct action on click', () => {
+      it('will delete menu item after user confirmation', () => {
+        const expectedAction = {"id": 1, "type": "menuItems::deleteMenuItem"}
+        const confirmSpy = jest.spyOn(window, 'confirm');
+        confirmSpy.mockImplementation(jest.fn(() => true));
 
+        const { queryByText } = renderComponent(MenuItem, initialState, props);
+        const deleteButton = queryByText("Delete");
+        fireEvent.click(deleteButton);
+
+        expect(confirmSpy).toHaveBeenCalledWith("Are you sure you want to delete this menu item?")
+        expect(dispatch).toHaveBeenCalledWith(expectedAction);
       });
     });
   });

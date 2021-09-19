@@ -18,9 +18,7 @@ const AppRouter = () => (
     <Nav />
     <Switch>
       <Route path="/" component={Menu} exact={true} />
-      <Route path="/create">
-        <CreateMenuItem />
-      </Route>
+      <Route path="/create" component={CreateMenuItem}/>
     </Switch>
   </Router>
 );

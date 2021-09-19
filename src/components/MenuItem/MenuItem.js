@@ -8,10 +8,9 @@ import { deleteMenuItem } from '../../store/actions/menuItems.actions';
 
 // ========================================================================
 
-const MenuItem = ({ item = {} }) => {
+const MenuItem = ({ item = {}, dispatch }) => {
   const { id, title, description, price, imageURL } = item;
   const isAdmin = useSelector(state => state.user.admin);
-  const dispatch = useDispatch();
 
   const handleDeleteItem = () => {
     if (window.confirm('Are you sure you want to delete this menu item?')) {

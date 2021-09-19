@@ -6,7 +6,6 @@ import {setAdmin} from "../../actions/user.actions";
 //==============================================================================
 
 describe("User Reducer", () => {
-
   describe("setAdmin", () => {
     it('sets the admin status', () => {
       const existingState = {admin: false};

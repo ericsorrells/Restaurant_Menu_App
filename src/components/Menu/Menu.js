@@ -10,7 +10,8 @@ import MenuItem from '../MenuItem/MenuItem';
 
 const Menu = () => {
   const menuData = useSelector(state => state.menuItems);
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
+
   const menuItems = Object.values(menuData).map(item => {
     return (
       <React.Fragment key={item.id}>

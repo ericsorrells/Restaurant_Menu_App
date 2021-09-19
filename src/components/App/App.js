@@ -14,7 +14,6 @@ import "../../styles/_styles.scss";
 const store = configureStore();
 
 const App = () => {
-
   useEffect(() => {
     if (window.location.search.includes("admin=true")) {
       store.dispatch(setAdmin())

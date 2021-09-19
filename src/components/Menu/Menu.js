@@ -2,6 +2,7 @@
 /* External */
 import React from 'react';
 import { useSelector } from 'react-redux'
+import {useParams} from "react-router-dom";
 
 /* Interal */
 import MenuItem from '../MenuItem/MenuItem';
@@ -9,7 +10,7 @@ import MenuItem from '../MenuItem/MenuItem';
 // ========================================================================
 
 const Menu = () => {
-  const menuData = useSelector((state) => state.menuItems);
+  const menuData = useSelector(state => state.menuItems);
   const menuItems = Object.values(menuData).map(item => {
     return (
       <React.Fragment key={item.id}>

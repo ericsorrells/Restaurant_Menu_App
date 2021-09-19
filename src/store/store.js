@@ -1,17 +1,19 @@
 // ========================================================================
 /* External */
-import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
+import { createStore, combineReducers, applyMiddleware } from 'redux';
 import { composeWithDevTools } from 'redux-devtools-extension';
 
 /* Interal */
 import menuItemsReducer from "./reducers/menuItems.reducer";
+import userReducer from "./reducers/user.reducer";
 
 // ========================================================================
 
 const configureStore = () => {
   const store = createStore(
     combineReducers({
-      menuItems: menuItemsReducer
+      user: userReducer,
+      menuItems: menuItemsReducer,
     }),
     composeWithDevTools(applyMiddleware())
   );

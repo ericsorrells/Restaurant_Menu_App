@@ -21,6 +21,8 @@ var menuItemsReducer = (state = initialState, action) => {
           imageURL
         }
       }
+    case "menuItems::deleteMenuItem":
+      return Object.values(state).filter(item => item.id !== action.id);
     default:
       return state;
   }

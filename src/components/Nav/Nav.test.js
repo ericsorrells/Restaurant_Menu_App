@@ -12,7 +12,6 @@ import Nav from "./Nav";
 // ========================================================================
 
 describe("Nav Component", () => {
-
   const renderNav = () => {
     return render(
       <MemoryRouter>

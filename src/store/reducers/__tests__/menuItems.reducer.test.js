@@ -1,7 +1,7 @@
 //==============================================================================
 /* Internal */
 import menuItemsReducer from "../menuItems.reducer";
-import {addMenuItem} from "../../actions/menuItems.actions";
+import {addMenuItem, deleteMenuItem} from "../../actions/menuItems.actions";
 
 //==============================================================================
 
@@ -22,8 +22,6 @@ describe("Menu Items Reducer", () => {
         1: makeMenuItem(),
         2: makeMenuItem({id: 2, title: "Pepperoni Pizza"})
       };
-      console.log('EISTIN', existingState)
-
 
       const payload = {
         id: 3,
@@ -38,6 +36,24 @@ describe("Menu Items Reducer", () => {
       const state = menuItemsReducer(existingState, action);
 
       expect(state).toEqual(expectedState);
+    });
+  });
+
+  describe('deleteMenuItem', () => {
+    it('removes menu item from state', () => {
+      const existingState = {
+        1: makeMenuItem(),
+        2: makeMenuItem({id: 2, title: "Pepperoni Pizza"}),
+        3: makeMenuItem({id: 3}),
+      };
+      const {2: deleted, ...remainingItems} = existingState;
+      console.log('REMAINING ITEMS', remainingItems)
+
+      const action = deleteMenuItem(2);
+      const state = menuItemsReducer(existingState, action);
+
+      expect(state).toEqual(remainingItems);
+
     });
   });
 });

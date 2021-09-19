@@ -12,9 +12,9 @@ const Menu = () => {
   const menuData = useSelector((state) => state.menuItems);
   const menuItems = Object.values(menuData).map(item => {
     return (
-      <div key={item.id}>
+      <React.Fragment key={item.id}>
         <MenuItem item={item} />
-      </div>
+      </React.Fragment>
     )
   });
 

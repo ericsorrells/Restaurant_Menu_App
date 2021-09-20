@@ -6,7 +6,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
   mode: "development",
-  entry: path.resolve(__dirname, './src/app.js'),
+  entry: path.resolve(__dirname, './src/index.js'),
   output: {
     path: path.resolve(__dirname, './public'),
     filename: 'bundle.js',
@@ -32,7 +32,7 @@ module.exports = {
         }, {
           loader: "sass-loader"
         }]
-      }
+      },
     ]
   },
   plugins: [
@@ -51,5 +51,6 @@ module.exports = {
     host: "localhost",
     port: "8080",
     compress: true,
+    historyApiFallback: true
   },
 }

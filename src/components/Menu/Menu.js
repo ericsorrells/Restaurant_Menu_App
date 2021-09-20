@@ -1,7 +1,7 @@
 // ========================================================================
 /* External */
 import React from 'react';
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 
 /* Interal */
 import MenuItem from '../MenuItem/MenuItem';
@@ -9,11 +9,13 @@ import MenuItem from '../MenuItem/MenuItem';
 // ========================================================================
 
 const Menu = () => {
-  const menuData = useSelector((state) => state.menuItems);
+  const menuData = useSelector(state => state.menuItems);
+  const dispatch = useDispatch();
+
   const menuItems = Object.values(menuData).map(item => {
     return (
       <React.Fragment key={item.id}>
-        <MenuItem item={item} />
+        <MenuItem item={item} dispatch={dispatch}/>
       </React.Fragment>
     )
   });

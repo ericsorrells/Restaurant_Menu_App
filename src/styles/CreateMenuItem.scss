@@ -1,0 +1,49 @@
+.CreateMenuItem__form {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  width: 90%;
+  margin-left: auto;
+  margin-right: auto;
+
+  .CreateMenuItem__inputItem {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1rem;
+    padding: 1rem;
+
+    .CreateMenuItem__label {
+      width: 17rem;
+      font-weight: bold;
+    }
+
+    .CreateMenuItem__textArea,
+    .CreateMenuItem__input {
+      width: 100%;
+      height: 4rem;
+      border-radius: 5px;
+      border: 1px solid black;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+  }
+
+  .CreateMenuItem__button {
+    background-color: $green;
+    border: 1px solid $green;
+    border-radius: 5px;
+    padding: 1.5rem;
+    color: white;
+    font-size: 2rem;
+    margin-top: 3.0rem;
+  }
+}
+
+@media only screen and (min-width: $mobile) {
+  .CreateMenuItem__form {
+    .CreateMenuItem__button {
+      width: 50%;
+      margin-left: auto;
+      margin-right: auto;
+    }
+  }
+}

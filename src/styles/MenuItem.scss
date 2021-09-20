@@ -18,10 +18,11 @@
     flex-direction: column;
     justify-content: space-between;
     margin-left: 1rem;
+    width: 100%;
 
     .MenuItem__titleDescription {
       .MenuItem__title {
-        font-size: 2.0rem;
+        font-size: 2rem;
         font-weight: bold;
         margin-bottom: 1rem;
       }
@@ -32,14 +33,28 @@
       }
     }
 
-    .MenuItem__price {
+    .MenuItem__optionsPrice {
       display: flex;
-      justify-content: end;
-      font-size: 2rem;
-    }
+      justify-content: space-between;
+      align-items: center;
 
-    .MenuItem__price::before {
-      content: "$";
+      .MenuItem__price {
+        display: flex;
+        justify-content: end;
+        font-size: 2rem;
+        margin-left: auto;
+      }
+
+      .MenuItem__price::before {
+        content: "$";
+      }
+
+      .MenuItem__deleteButton {
+        background-color: $red;
+        border: 1px solid $red;
+        color: white;
+        border-radius: 5px;
+      }
     }
   }
 }

@@ -3,3 +3,4 @@ dist/*
 .history
 .vscode/
 .DS_Store
+TODO.md

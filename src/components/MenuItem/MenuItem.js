@@ -56,7 +56,6 @@ const MenuItem = ({ item = {}, dispatch }) => {
           </div>
         </div>
       </div>
-      {/* TODO: add admin restriction */}
       {editImageURL &&
         <div clasName="MenuItem__imageURLChangeContainer">
           <InlineEditableField

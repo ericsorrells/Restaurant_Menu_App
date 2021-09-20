@@ -48,7 +48,6 @@ const InlineEditableField = ({
 
   return (
     <div>
-      {/* TODO: add admin restriction */}
       {editMode && isAdmin ?
         <form className="InlineEditableField__container" onSubmit={handleSubmit}>
           <input

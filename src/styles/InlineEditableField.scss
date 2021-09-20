@@ -1,9 +1,10 @@
 .InlineEditableField__container {
   width: 100%;
   display: flex;
+  margin-top: 5px;
+  align-items: inherit;
 
   .InlineEditableField__input {
-    //flex: 1;
     width: calc(100% - 62px);
   }
 
@@ -15,8 +16,6 @@
   .InlineEditableField__deleteIcon,
   .InlineEditableField__checkmarkIcon {
     width: 2.5rem;
-  }
-
-  .InlineEditableField__deleteIcon {
+    height: fit-content;
   }
 }

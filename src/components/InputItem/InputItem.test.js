@@ -23,7 +23,7 @@ describe("InputItem Component", () => {
   });
 
   it('should display the correct input value', () => {
-    const {container, debug} = render(<InputItem {...initialState}/>);
+    const {container} = render(<InputItem {...initialState}/>);
     const input = container.querySelector('input')
     expect(input.value).toBe(initialState.value)
   });

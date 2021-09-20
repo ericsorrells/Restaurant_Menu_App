@@ -35,7 +35,7 @@
 
     .MenuItem__optionsPrice {
       display: flex;
-      justify-content: space-between;
+      justify-content: end;
       align-items: center;
 
       .MenuItem__price {
@@ -50,6 +50,7 @@
       }
 
       .MenuItem__deleteButton {
+        margin-right: auto;
         background-color: $red;
         border: 1px solid $red;
         color: white;

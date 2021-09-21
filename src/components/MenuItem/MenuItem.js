@@ -56,8 +56,9 @@ const MenuItem = ({ item = {}, dispatch }) => {
           </div>
         </div>
       </div>
-      {editImageURL &&
-        <div clasName="MenuItem__imageURLChangeContainer">
+      {
+        editImageURL && isAdmin &&
+        <div className="MenuItem__imageURLChangeContainer">
           <InlineEditableField
             value={imageURL}
             placeholder={"Image URL"}

@@ -1,10 +1,6 @@
 # Up and Running
-<<<<<<< Updated upstream
-The following steps will help you get the application installed and running in a development environement:
-=======
 ## Starting the Application:
 The following steps will help you get the application installed and running in a development environment:
->>>>>>> Stashed changes
 1. Install node modules with: `yarn`
 2. Start the application in the development environment by running the following command: `yarn dev`
 

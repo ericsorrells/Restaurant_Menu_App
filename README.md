@@ -1,5 +1,10 @@
 # Up and Running
+<<<<<<< Updated upstream
 The following steps will help you get the application installed and running in a development environement:
+=======
+## Starting the Application:
+The following steps will help you get the application installed and running in a development environment:
+>>>>>>> Stashed changes
 1. Install node modules with: `yarn`
 2. Start the application in the development environment by running the following command: `yarn dev`
 
@@ -15,4 +20,3 @@ This application will allow a user to make inline edits to each menu items. In o
 
 # Level 4: Multiple Menu Management
 The instructions didn't specify the types of alternate menus that might exist, so the app was created with 'lunch' and 'dinner' menus. Each item is tied to a specific menu. The dropdown can be used to filter items based on menu type.
-

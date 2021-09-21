@@ -5,21 +5,19 @@ import { useDispatch, useSelector } from 'react-redux'
 
 /* Interal */
 import InputItem from '../InputItem/InputItem';
+import useCreateMenuItemHooks from './CreateMenuItemHooks';
 import { addMenuItem } from '../../store/actions/menuItems.actions';
 import { history } from "../../router/AppRouter";
 
 // ========================================================================
 
 const CreateMenuItem = () => {
-  const dispatch = useDispatch();
-  const menuItems = useSelector(state => state.menuItems);
-
-  const [inputState, setInputState] = useState({
-    title: "",
-    description: "",
-    price: 0,
-    imageURL: ""
-  })
+  const {
+    dispatch,
+    inputState,
+    setInputState,
+    menuItems,
+  } = useCreateMenuItemHooks();
 
   const onDescriptionChange = (e) => setInputState({ ...inputState, description: e.target.value });
   const onImageURLChange = (e) => setInputState({ ...inputState, imageURL: e.target.value });

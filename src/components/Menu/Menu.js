@@ -1,20 +1,20 @@
 // ========================================================================
 /* External */
-import React, { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux'
+import React from 'react';
 
 /* Interal */
 import MenuItem from '../MenuItem/MenuItem';
+import useMenuHooks from './MenuHooks';
 
 // ========================================================================
 
 const Menu = () => {
-  const [menuType, setMenuType] = useState("");
-  const menuData = useSelector(state => {
-    if (!menuType) return state.menuItems;
-    return Object.values(state.menuItems).filter((item) => item.menu === menuType)
-  });
-  const dispatch = useDispatch();
+  const {
+    dispatch,
+    menuData,
+    menuType,
+    setMenuType,
+  } = useMenuHooks()
 
   const handleSelection = (e) => {
     const selection = e.target.value;

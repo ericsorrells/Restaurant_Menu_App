@@ -20,7 +20,6 @@ const InlineEditableField = ({
   customHandler,
   isAdmin,
 }) => {
-
   const [editMode, setEditMode] = useState(autoOpen);
   const [inputValue, setInputValue] = useState(value);
   const dispatch = useDispatch();

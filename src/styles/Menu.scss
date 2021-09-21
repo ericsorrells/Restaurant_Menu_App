@@ -5,16 +5,15 @@
   padding: 0.5rem;
 
   .Menu__selectContainer {
-    width: 100%;
-    margin-left: 1.5rem;
+    width: 95%;
 
     select {
-      background-color: gray;
+      background-color: $gray;
       color: white;
       width: 100%;
       padding: 5px;
       margin-bottom: 15px;
-      border: 1px sold gray;
+      border: 1px solid $gray;
       border-radius: 5px;
       font-size: 1.8rem;
     }
@@ -34,6 +33,7 @@
 
     .Menu__selectContainer {
       width: 100%;
+      margin-left: 1.5rem;
 
       select {
         width: 25%;

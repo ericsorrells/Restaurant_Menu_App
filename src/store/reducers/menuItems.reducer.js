@@ -1,11 +1,8 @@
 //==============================================================================
 
-/* Internal */
-import menuItems from "../../utils/menuItems.data";
-
 //==============================================================================
 
-const initialState = { ...menuItems };
+const initialState = { };
 
 var menuItemsReducer = (state = initialState, action) => {
   switch (action.type) {
@@ -20,6 +17,12 @@ var menuItemsReducer = (state = initialState, action) => {
           price,
           imageURL
         }
+      }
+
+    case "menuItems::addMenuItems":
+      return {
+        ...state,
+        ...action.payload
       }
 
     case "menuItems::deleteMenuItem":

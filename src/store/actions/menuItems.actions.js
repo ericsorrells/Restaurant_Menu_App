@@ -3,6 +3,11 @@ const addMenuItem = (payload) => ({
   payload
 });
 
+const addMenuItems = (payload) => ({
+  type: "menuItems::addMenuItems",
+  payload
+});
+
 const deleteMenuItem = (id) => ({
   type: "menuItems::deleteMenuItem",
   id
@@ -16,6 +21,7 @@ const editMenuItem = (payload, id) => ({
 
 export {
   addMenuItem,
+  addMenuItems,
   deleteMenuItem,
   editMenuItem,
 }

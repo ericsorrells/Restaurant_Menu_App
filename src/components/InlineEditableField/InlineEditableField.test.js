@@ -2,7 +2,7 @@
 // ========================================================================
 /* Interal */
 import React from "react";
-import { fireEvent, render } from "@testing-library/react";
+import { fireEvent, render, screen } from "@testing-library/react";
 import '@testing-library/jest-dom/extend-expect';
 
 /* Interal */
@@ -32,29 +32,29 @@ describe("InlineEditableField Component", () => {
 
   describe('Before Being Clicked', () => {
     it('displays the correct data', () => {
-      const { getByTestId } = render(<InlineEditableField {...defaultProps}/>);
-      expect(getByTestId("textContent")).toBeInTheDocument();
+      render(<InlineEditableField {...defaultProps}/>);
+      expect(screen.getByText(defaultProps.value)).toBeInTheDocument();
     });
 
     it('does not display data input field', () => {
-      const { queryByTestId } = render(<InlineEditableField {...defaultProps}/>);
-      expect(queryByTestId("inputField")).not.toBeInTheDocument();
+      render(<InlineEditableField {...defaultProps}/>);
+      expect(screen.queryByPlaceholderText(defaultProps.placeholder)).not.toBeInTheDocument();
     });
   });
 
   describe('When Clicked', () => {
     it('it displays the input field', () => {
-      const { getByTestId } = render(<InlineEditableField {...defaultProps}/>);
-      const content = getByTestId("textContent");
+      render(<InlineEditableField {...defaultProps}/>);
+      const content = screen.getByText(defaultProps.value);
       fireEvent.click(content);
-      expect(getByTestId("inputField")).toBeInTheDocument();
+      expect(screen.getByPlaceholderText(defaultProps.placeholder)).toBeInTheDocument();
     });
 
     it('does not display the content data', () => {
-      const { queryByTestId } = render(<InlineEditableField {...defaultProps}/>);
-      const content = queryByTestId("textContent");
+      render(<InlineEditableField {...defaultProps}/>);
+      const content = screen.queryByText(defaultProps.value);
       fireEvent.click(content);
-      expect(queryByTestId("textContent")).not.toBeInTheDocument();
+      expect(screen.queryByText(defaultProps.value)).not.toBeInTheDocument();
     });
 
     describe('On Submit', () => {
@@ -69,56 +69,56 @@ describe("InlineEditableField Component", () => {
           "type": "menuItems::editMenuItem"
         };
 
-        const { getByTestId } = render(<InlineEditableField {...defaultProps}/>);
-        const content = getByTestId("textContent");
+        render(<InlineEditableField {...defaultProps}/>);
+        const content = screen.getByText(defaultProps.value);
         fireEvent.click(content);
-        const submitButton = getByTestId("submitIcon");
+        const submitButton = screen.getByTestId("submitIcon");
         fireEvent.click(submitButton);
 
         expect(mockDispatch).toHaveBeenCalledWith(expectedAction);
       });
 
       it('will fire custom handler', () => {
-        const { getByTestId } = render(<InlineEditableField {...defaultProps}/>);
-        const content = getByTestId("textContent");
+        render(<InlineEditableField {...defaultProps}/>);
+        const content = screen.getByText(defaultProps.value);
         fireEvent.click(content);
-        const submitButton = getByTestId("submitIcon");
+        const submitButton = screen.getByTestId("submitIcon");
         fireEvent.click(submitButton);
 
         expect(customHandlerMock).toHaveBeenCalled();
       });
 
       it('returns to the content display', () => {
-        const { getByTestId } = render(<InlineEditableField {...defaultProps}/>);
-        let content = getByTestId("textContent");
+        render(<InlineEditableField {...defaultProps}/>);
+        const content = screen.getByText(defaultProps.value);
         fireEvent.click(content);
-        const submitButton = getByTestId("submitIcon");
+        const submitButton = screen.getByTestId("submitIcon");
         fireEvent.click(submitButton);
 
-        expect(getByTestId("textContent")).toBeInTheDocument();
+        expect(screen.getByText(defaultProps.value)).toBeInTheDocument();
       });
     });
 
     describe('On Close', () => {
       it('will remove the input field', () => {
-        const { getByTestId } = render(<InlineEditableField {...defaultProps}/>);
-        let content = getByTestId("textContent");
+        render(<InlineEditableField {...defaultProps}/>);
+        const content = screen.getByText(defaultProps.value);
         fireEvent.click(content);
-        const closeButton = getByTestId("closeIcon");
+        const closeButton = screen.getByTestId("closeIcon");
         fireEvent.click(closeButton);
-        content = getByTestId("textContent");
+        const newContent = screen.getByText(defaultProps.value);
 
-        expect(content).toBeInTheDocument();
+        expect(newContent).toBeInTheDocument();
       });
 
       it('will not fire the edit action', () => {
         const mockDispatch = jest.fn();
         useDispatch.mockImplementation(() => mockDispatch);
 
-        const { getByTestId } = render(<InlineEditableField {...defaultProps}/>);
-        const content = getByTestId("textContent");
+        render(<InlineEditableField {...defaultProps}/>);
+        const content = screen.getByText(defaultProps.value);
         fireEvent.click(content);
-        const closeButton = getByTestId("closeIcon");
+        const closeButton = screen.getByTestId("closeIcon");
         fireEvent.click(closeButton);
 
         expect(mockDispatch).not.toHaveBeenCalled();
@@ -127,19 +127,19 @@ describe("InlineEditableField Component", () => {
 
     it('can open directly with input field displayed', () => {
       const newProps = {...defaultProps, autoOpen: true};
-      const { getByTestId } = render(<InlineEditableField {...newProps}/>);
-      expect(getByTestId("inputField")).toBeInTheDocument();
+      render(<InlineEditableField {...newProps}/>);
+      expect(screen.getByPlaceholderText(defaultProps.placeholder)).toBeInTheDocument();
     });
   });
 
   describe('When Not Admin', () => {
     it('will not display input field when clicked', () => {
       const newProps = {...defaultProps, isAdmin: false}
-      const { queryByTestId } = render(<InlineEditableField {...newProps}/>);
-      const content = queryByTestId("textContent");
+      render(<InlineEditableField {...newProps}/>);
+      const content = screen.getByText(defaultProps.value);
       fireEvent.click(content);
 
-      expect(queryByTestId("inputField")).not.toBeInTheDocument();
+      expect(screen.queryByPlaceholderText(defaultProps.placeholder)).not.toBeInTheDocument();
     });
   });
 });

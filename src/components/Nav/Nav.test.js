@@ -2,7 +2,7 @@
 // ========================================================================
 /* Interal */
 import React from "react";
-import { render } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
 import '@testing-library/jest-dom/extend-expect';
 import * as redux from 'react-redux';
 import { MemoryRouter } from 'react-router-dom';
@@ -26,9 +26,9 @@ describe("Nav Component", () => {
 
     it('will display link to menu page', () => {
       spy.mockReturnValue(false);
-      const { queryByTestId } = renderNav();
-      const nav = queryByTestId("nav");
-      const mainPageLink = queryByTestId("mainPageLink");
+      renderNav();
+      const nav = screen.queryByTestId("nav");
+      const mainPageLink = screen.queryByText("Eric's Pizza Palace");
 
       expect(nav).toContainElement(mainPageLink);
       expect(mainPageLink).toHaveAttribute('href', '/');
@@ -36,9 +36,9 @@ describe("Nav Component", () => {
 
     it('will not display link to add menu items', () => {
       spy.mockReturnValue(false);
-      const { queryByTestId } = renderNav();
-      const nav = queryByTestId("nav");
-      const createMenuItemLink = queryByTestId("createMenuItemLink");
+      renderNav();
+      const nav = screen.queryByTestId("nav");
+      const createMenuItemLink = screen.queryByText("Add Menu Item");
 
       expect(nav).not.toContainElement(createMenuItemLink);
     });
@@ -49,9 +49,9 @@ describe("Nav Component", () => {
 
     it('will display link to menu page', () => {
       spy.mockReturnValue(true);
-      const { queryByTestId } = renderNav();
-      const nav = queryByTestId("nav");
-      const mainPageLink = queryByTestId("mainPageLink");
+      renderNav();
+      const nav = screen.queryByTestId("nav");
+      const mainPageLink = screen.queryByText("Eric's Pizza Palace");
 
       expect(nav).toContainElement(mainPageLink);
       expect(mainPageLink).toHaveAttribute('href', '/?admin=true');
@@ -59,9 +59,9 @@ describe("Nav Component", () => {
 
     it('will display link to add menu item', () => {
       spy.mockReturnValue(true);
-      const { queryByTestId } = renderNav();
-      const nav = queryByTestId("nav");
-      const createMenuItemLink = queryByTestId("createMenuItemLink");
+      renderNav();
+      const nav = screen.queryByTestId("nav");
+      const createMenuItemLink = screen.queryByText("Add Menu Item");
 
       expect(nav).toContainElement(createMenuItemLink);
       expect(createMenuItemLink).toHaveAttribute('href', '/create/?admin=true');

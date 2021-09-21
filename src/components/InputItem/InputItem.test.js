@@ -1,7 +1,7 @@
 // ========================================================================
 /* Interal */
 import React from "react";
-import { render } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
 import '@testing-library/jest-dom/extend-expect';
 
 /* Interal */
@@ -17,14 +17,14 @@ describe("InputItem Component", () => {
   }
 
   it("should display the label", () => {
-    const {getByText} = render(<InputItem {...initialState}/>);
-    const label = getByText(`${initialState.label}:`)
+    render(<InputItem {...initialState}/>);
+    const label = screen.getByText(`${initialState.label}:`)
     expect(label).toBeInTheDocument()
   });
 
   it('should display the correct input value', () => {
-    const {container} = render(<InputItem {...initialState}/>);
-    const input = container.querySelector('input')
+    render(<InputItem {...initialState}/>);
+    const input = screen.getByPlaceholderText(initialState.label);
     expect(input.value).toBe(initialState.value)
   });
 });

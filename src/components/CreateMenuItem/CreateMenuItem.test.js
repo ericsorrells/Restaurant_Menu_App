@@ -2,7 +2,7 @@
 // ========================================================================
 /* Interal */
 import React from "react";
-import { fireEvent, render } from "@testing-library/react";
+import { render, screen, userEvent, fireEvent } from "@testing-library/react";
 import '@testing-library/jest-dom/extend-expect';
 
 /* Interal */
@@ -20,12 +20,11 @@ jest.mock("react-redux", () => ({
 describe("CreateMenuItem Component", () => {
   describe('Create Menu Item Form', () => {
     it('has all the necessary fields', () => {
-      const { getByPlaceholderText } = render(<CreateMenuItem />);
-
-      const title = getByPlaceholderText("Title");
-      const description = getByPlaceholderText("Description");
-      const price = getByPlaceholderText("Price");
-      const imageURL = getByPlaceholderText("Image URL");
+      render(<CreateMenuItem />);
+      const title = screen.getByPlaceholderText("Title");
+      const description = screen.getByPlaceholderText("Description");
+      const price = screen.getByPlaceholderText("Price");
+      const imageURL = screen.getByPlaceholderText("Image URL");
 
       expect(title).toBeInTheDocument();
       expect(description).toBeInTheDocument();
@@ -36,8 +35,8 @@ describe("CreateMenuItem Component", () => {
 
   it('accepts user input', () => {
     const newTitle = "someNewTitle";
-    const { queryByPlaceholderText } = render(<CreateMenuItem />);
-    const titleInput = queryByPlaceholderText("Title");
+    render(<CreateMenuItem />);
+    const titleInput = screen.queryByPlaceholderText("Title");
     fireEvent.change(titleInput, { target: { value: newTitle } });
 
     expect(titleInput.value).toBe(newTitle);
@@ -61,10 +60,10 @@ describe("CreateMenuItem Component", () => {
         "type": "menuItems::addMenuItem"
       }
 
-      const { queryByTestId, queryByPlaceholderText } = render(<CreateMenuItem />);
-      const submitButton = queryByTestId("submitButton");
-      const titleInput = queryByPlaceholderText("Title");
-      const descriptionInput = queryByPlaceholderText("Description");
+      render(<CreateMenuItem />);
+      const submitButton = screen.getByText("Enter");
+      const titleInput = screen.queryByPlaceholderText("Title");
+      const descriptionInput = screen.queryByPlaceholderText("Description");
 
       fireEvent.change(titleInput, { target: { value: newTitle } });
       fireEvent.change(descriptionInput, { target: { value: newDescription } });

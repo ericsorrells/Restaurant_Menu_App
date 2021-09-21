@@ -15,10 +15,11 @@ describe("MenuItem Component", () => {
   const dispatch = jest.fn();
   const item = {
     id: 1,
-    image: "http://someImage.url",
-    title: "My Awesome Pizza",
     description: "Lorem ipsum dolor sit",
+    image: "http://someImage.url",
+    isAdmin: true,
     price: 14.99,
+    title: "My Awesome Pizza",
   };
   const props = {item, dispatch}
 
@@ -29,18 +30,18 @@ describe("MenuItem Component", () => {
     });
 
     it("should have title", () => {
-      const { getByTestId } = renderComponent(MenuItem, initialState, props);
-      expect(getByTestId("title")).toHaveTextContent(item.title);
+      const { getByText } = renderComponent(MenuItem, initialState, props);
+      expect(getByText(item.title)).toBeInTheDocument();
     });
 
     it("should have item description", () => {
-      const { getByTestId } = renderComponent(MenuItem, initialState, props);
-      expect(getByTestId("description")).toHaveTextContent(item.description);
+      const { getByText } = renderComponent(MenuItem, initialState, props);
+      expect(getByText(item.description)).toBeInTheDocument();
     });
 
     it("should have item price", () => {
-      const { getByTestId } = renderComponent(MenuItem, initialState, props);
-      expect(getByTestId("price")).toHaveTextContent(item.price);
+      const { getByText } = renderComponent(MenuItem, initialState, props);
+      expect(getByText(item.price)).toBeInTheDocument();
     });
   });
 

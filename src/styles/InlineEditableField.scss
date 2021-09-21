@@ -1,0 +1,21 @@
+.InlineEditableField__container {
+  width: 100%;
+  display: flex;
+  margin-top: 5px;
+  align-items: inherit;
+
+  .InlineEditableField__input {
+    width: calc(100% - 62px);
+  }
+
+  .InlineEditableField__checkmarkButton {
+    border: none;
+    background-color: white;
+  }
+
+  .InlineEditableField__deleteIcon,
+  .InlineEditableField__checkmarkIcon {
+    width: 2.5rem;
+    height: fit-content;
+  }
+}

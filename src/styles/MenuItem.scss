@@ -1,5 +1,6 @@
 .MenuItem__container {
   display: flex;
+  flex-direction: column;
   width: 95%;
   padding: 1rem;
   border: 1px solid $gray-light;
@@ -7,57 +8,68 @@
   margin-bottom: 2rem;
   box-shadow: 0px 8px 13px 2px rgba(78, 56, 56, 0.25);
 
-  .MenuItem__image {
-    width: 15rem;
-    height: 15rem;
-    object-fit: cover;
-  }
-
-  .MenuItem__detailsContainer {
+  .MenuItem__innerContainer {
     display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    margin-left: 1rem;
-    width: 100%;
+    height: 100%;
 
-    .MenuItem__titleDescription {
-      .MenuItem__title {
-        font-size: 2rem;
-        font-weight: bold;
-        margin-bottom: 1rem;
-      }
-
-      .MenuItem__description {
-        color: grey;
-        margin-bottom: 2rem;
-      }
+    .MenuItem__image {
+      width: 15rem;
+      height: 15rem;
+      object-fit: cover;
     }
 
-    .MenuItem__optionsPrice {
+    .MenuItem__detailsContainer {
       display: flex;
+      flex-direction: column;
       justify-content: space-between;
-      align-items: center;
+      margin-left: 1rem;
+      width: 100%;
 
-      .MenuItem__price {
+      .MenuItem__titleDescription {
+        .MenuItem__title {
+          font-size: 2rem;
+          font-weight: bold;
+          margin-bottom: 1rem;
+        }
+
+        .MenuItem__description {
+          color: grey;
+          margin-bottom: 2rem;
+        }
+      }
+
+      .MenuItem__optionsPrice {
         display: flex;
         justify-content: end;
-        font-size: 2rem;
-        margin-left: auto;
-      }
+        align-items: center;
 
-      .MenuItem__price::before {
-        content: "$";
-      }
+        .MenuItem__price {
+          display: flex;
+          justify-content: end;
+          font-size: 2rem;
+          margin-left: auto;
+        }
 
-      .MenuItem__deleteButton {
-        background-color: $red;
-        border: 1px solid $red;
-        color: white;
-        border-radius: 5px;
+        .MenuItem__price::before {
+          content: "$";
+        }
+
+        .MenuItem__deleteButton {
+          margin-right: auto;
+          background-color: $red;
+          border: 1px solid $red;
+          color: white;
+          border-radius: 5px;
+        }
       }
     }
   }
+
 }
+
+.MenuItem__imageURLChangeContainer {
+  margin-top: 5px;
+};
 
 @media only screen and (min-width: $mobile) {
   .MenuItem__container {

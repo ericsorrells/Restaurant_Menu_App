@@ -7,6 +7,8 @@ import { Provider } from 'react-redux';
 import AppRouter from '../../router/AppRouter';
 import configureStore from '../../store/store';
 import { setAdmin } from '../../store/actions/user.actions';
+import { addMenuItems } from "../../store/actions/menuItems.actions";
+import menuItems from "../../utils/menuItems.data";
 import "../../styles/_styles.scss";
 
 // ========================================================================
@@ -18,6 +20,7 @@ const App = () => {
     if (window.location.search.includes("admin=true")) {
       store.dispatch(setAdmin())
     }
+    store.dispatch(addMenuItems(menuItems))
   }, [])
 
   return (

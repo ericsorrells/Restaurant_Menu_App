@@ -47,7 +47,10 @@ describe("Menu Items Reducer", () => {
         3: makeMenuItem({id: 3}),
       };
 
-      const expectedState = Object.values(existingState).filter(item => item.id !== 2);
+      const expectedState = {
+        1: makeMenuItem(),
+        3: makeMenuItem({id: 3}),
+      }
       const action = deleteMenuItem(2);
       const state = menuItemsReducer(existingState, action);
 

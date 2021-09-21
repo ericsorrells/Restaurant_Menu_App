@@ -1,11 +1,8 @@
 //==============================================================================
 
-/* Internal */
-import menuItems from "../../utils/menuItems.data";
-
 //==============================================================================
 
-const initialState = { ...menuItems };
+const initialState = { };
 
 var menuItemsReducer = (state = initialState, action) => {
   switch (action.type) {
@@ -22,8 +19,20 @@ var menuItemsReducer = (state = initialState, action) => {
         }
       }
 
+    case "menuItems::addMenuItems":
+      return {
+        ...state,
+        ...action.payload
+      }
+
     case "menuItems::deleteMenuItem":
-      return Object.values(state).filter(item => item.id !== action.id);
+      return Object.keys(state).reduce((accumulator, key) => {
+        key = parseInt(key);
+        if (key !== action.id) {
+          accumulator[key] = state[key]
+        }
+        return accumulator
+      }, {})
 
     case 'menuItems::editMenuItem':
       return {

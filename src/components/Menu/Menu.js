@@ -9,7 +9,7 @@ import MenuItem from '../MenuItem/MenuItem';
 // ========================================================================
 
 const Menu = () => {
-  const [menuType, setMenuType] = useState("")
+  const [menuType, setMenuType] = useState("");
   const menuData = useSelector(state => {
     if (!menuType) return state.menuItems;
     return Object.values(state.menuItems).filter((item) => item.menu === menuType)
@@ -32,8 +32,8 @@ const Menu = () => {
   return (
     <div className="Menu__container" data-testid="menu">
       <div className="Menu__selectContainer">
-        <select value={menuType} onChange={handleSelection}>
-          <option disabled selected value=''>Select A Menu</option>
+        <select value={menuType} onChange={handleSelection} data-testid="dropdown">
+          <option disabled defaultValue value=''>Select A Menu</option>
           <option value="">All Dishes</option>
           <option value="dinner">Dinner</option>
           <option value="lunch">Lunch</option>

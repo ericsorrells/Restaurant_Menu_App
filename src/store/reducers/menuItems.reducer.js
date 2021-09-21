@@ -26,7 +26,13 @@ var menuItemsReducer = (state = initialState, action) => {
       }
 
     case "menuItems::deleteMenuItem":
-      return Object.values(state).filter(item => item.id !== action.id);
+      return Object.keys(state).reduce((accumulator, key) => {
+        key = parseInt(key);
+        if (key !== action.id) {
+          accumulator[key] = state[key]
+        }
+        return accumulator
+      }, {})
 
     case 'menuItems::editMenuItem':
       return {
